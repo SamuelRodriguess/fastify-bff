@@ -1,14 +1,12 @@
 import { PrismaClient } from '@prisma/client';
-import { FastifyInstance } from 'fastify';
+import { prisma } from '../../plugins/prisma.js';
 
-declare module 'fastify' {
-  interface FastifyInstance {
-    prisma: PrismaClient;
-  }
-}
-
-export async function historyService(app: FastifyInstance, query: string) {
-  const prisma = app.prisma;
+/**
+ * Saves a search query to the SearchHistory table.
+ * @param query - the search term to save
+ * @returns the created SearchHistory record
+ */
+export async function historyService(query: string) {
   return prisma.searchHistory.create({
     data: { query, searchedAt: new Date() },
   });

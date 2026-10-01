@@ -9,11 +9,16 @@ declare module 'fastify' {
   }
 }
 
-export async function prismaPlugin(app: FastifyInstance) {
-  const adapter = new PrismaPg({ connectionString: env.databaseUrl });
-  app.decorate('prisma', new PrismaClient({ adapter }));
+/** Singleton PrismaClient with PostgreSQL adapter, shared across the app. */
+export const prisma = new PrismaClient({
+  adapter: new PrismaPg({ connectionString: env.databaseUrl }),
+});
 
-  app.addHook('onClose', async (app) => {
-    await app.prisma.$disconnect();
+/** Registers PrismaClient on the Fastify instance and disconnects on close. */
+export async function prismaPlugin(app: FastifyInstance) {
+  app.decorate('prisma', prisma);
+
+  app.addHook('onClose', async () => {
+    await prisma.$disconnect();
   });
 }
