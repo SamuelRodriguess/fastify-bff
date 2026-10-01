@@ -1,0 +1,13 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model SearchHistory {
+  id        String   @id @default(cuid())
+  query     String
+  searchedAt DateTime @default(now())
+}
