@@ -1,6 +1,8 @@
-# fastify-bff
+# FASTIFY BFF
 
 Fastify-based BFF (Backend for Frontend) orchestrating VTEX Intelligent Search API + PostgreSQL.
+
+<img width="857" height="478" alt="image" src="https://github.com/user-attachments/assets/616f65e6-036b-42fc-9041-ce22d4f98037" />
 
 ## Run
 
@@ -59,3 +61,5 @@ query {
 - Apollo Server v5
 - Prisma Client v7 + PostgreSQL (PrismaPg adapter)
 - TypeScript 7
+
+  
