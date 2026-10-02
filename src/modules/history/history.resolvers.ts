@@ -1,10 +1,16 @@
-import { historySchema } from './history.schema.js';
+import { getHistory } from './history.service.js';
 import { historyService } from './history.service.js';
 
 export const historyResolvers = {
   Query: {
+    /**
+     * Returns recent search history records.
+     * @param _ - parent resolver value (unused)
+     * @param limit - max records to return
+     * @returns array of SearchHistory records
+     */
     history: async (_: unknown, { limit }: { limit?: number }) => {
-      return [];
+      return getHistory(limit ?? 10);
     },
   },
   Mutation: {

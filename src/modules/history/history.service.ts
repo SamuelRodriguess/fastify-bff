@@ -11,3 +11,15 @@ export async function historyService(query: string) {
     data: { query, searchedAt: new Date() },
   });
 }
+
+/**
+ * Retrieves search history records, most recent first.
+ * @param limit - max records to return (default 10)
+ * @returns array of SearchHistory records
+ */
+export async function getHistory(limit: number = 10) {
+  return prisma.searchHistory.findMany({
+    orderBy: { searchedAt: 'desc' },
+    take: limit,
+  });
+}
