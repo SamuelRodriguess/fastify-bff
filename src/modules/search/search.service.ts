@@ -4,7 +4,7 @@
  * @param count - number of results
  * @returns array of raw VTEX product objects
  */
-export async function searchService(query: string, count: number) {
+export async function searchService(query: string, count: number = 10) {
   const url = `https://obramax.vtexcommercestable.com.br/api/io/_v/api/intelligent-search/product_search/?query=${encodeURIComponent(query)}&page=1&count=${count}`;
 
   const res = await fetch(url, {
