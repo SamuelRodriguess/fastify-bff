@@ -7,6 +7,7 @@ exports.apolloPlugin = apolloPlugin;
 const fastify_1 = __importDefault(require("@as-integrations/fastify"));
 const server_1 = require("@apollo/server");
 const schema_js_1 = require("../graphql/schema.js");
+/** Registers Apollo GraphQL server on /graphql prefix. */
 async function apolloPlugin(app) {
     const server = new server_1.ApolloServer({ schema: schema_js_1.schema });
     await server.start();

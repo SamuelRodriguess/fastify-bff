@@ -1,7 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.searchService = searchService;
-async function searchService(query, count) {
+/**
+ * Searches VTEX Intelligent Search API for products matching the query.
+ * @param query - search term
+ * @param count - number of results
+ * @returns array of raw VTEX product objects
+ */
+async function searchService(query, count = 10) {
     const url = `https://obramax.vtexcommercestable.com.br/api/io/_v/api/intelligent-search/product_search/?query=${encodeURIComponent(query)}&page=1&count=${count}`;
     const res = await fetch(url, {
         headers: {
